@@ -15,7 +15,7 @@ public class QuestionController {
      * Registers a question in the database.
      * @param questionData The question data to register.
      */
-    @CrossOrigin(origins = "http://jelmerpijnappel.com")
+    @CrossOrigin(origins = "https://jelmerpijnappel.com/")
     @PostMapping("/register-question")
     public void registerQuestion(@RequestBody QuestionData questionData) {
         System.out.println(questionData.getQuestion());
