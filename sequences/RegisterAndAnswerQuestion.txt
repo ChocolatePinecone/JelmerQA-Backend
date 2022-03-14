@@ -1,0 +1,39 @@
+@startuml
+title Register and Answer Question
+
+actor User
+actor Jelmer
+
+group Register Question
+    User -> Frontend: Send question and email address
+    Frontend -> QuestionController: Register question
+    QuestionController -> Database: Store question + email
+    activate Database
+    QuestionController <-- Database: Done
+    deactivate Database
+    Frontend <-- QuestionController: Confirm register request
+    User <-- Frontend: Confirm registering
+    QuestionController -> EmailDelegate: Initiate emails
+    activate EmailDelegate
+    User <-- EmailDelegate: Email confirmation of registering
+    Jelmer <-- EmailDelegate: Email notification of new question
+    QuestionController <-- EmailDelegate: Done
+    deactivate EmailDelegate
+end
+
+group Answer Question
+    Jelmer -> Frontend: Send answer
+    Frontend -> QuestionController: Register answer
+    QuestionController -> Database: Store answer
+    activate Database
+    QuestionController <-- Database: Done
+    deactivate Database
+    Frontend <-- QuestionController: Confirm answer received
+    QuestionController -> EmailDelegate: Initiate answer update email
+    activate EmailDelegate
+    User <-- EmailDelegate: Email answer update
+    QuestionController <-- EmailDelegate: Done
+    deactivate EmailDelegate
+    QuestionController -> Database: Remove email address from question
+end
+@enduml
