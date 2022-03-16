@@ -90,6 +90,12 @@
 		</profile>
 		<profile>
 			<id>production</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 
