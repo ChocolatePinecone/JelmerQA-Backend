@@ -74,11 +74,6 @@
 			<artifactId>exec-maven-plugin</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
 
 	</dependencies>
 
@@ -95,13 +90,16 @@
 		</profile>
 		<profile>
 			<id>production</id>
-			<!--<dependencies>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
 				<dependency>
 					<groupId>org.postgresql</groupId>
 					<artifactId>postgresql</artifactId>
 					<scope>runtime</scope>
 				</dependency>
-			</dependencies>-->
+			</dependencies>
 		</profile>
 	</profiles>
 
