@@ -1,4 +1,4 @@
-package com.jelmerpijnappel.jelmerqa;
+package com.jelmerpijnappel.jelmerqa.database;
 
 import com.zaxxer.hikari.*;
 import org.springframework.beans.factory.annotation.Value;
