@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Question {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     private String text;
@@ -37,11 +37,19 @@ public class Question {
     }
 
     /**
+     * Gets the question id
+     * @return A string containing the stored question id
+     */
+    public Long getId() {
+        return this.id;
+    }
+
+    /**
      * Gets the question text
      * @return A string containing the stored question text
      */
     public String getText() {
-        return text;
+        return this.text;
     }
 
     /**
@@ -49,7 +57,7 @@ public class Question {
      * @return A string containing the stored email address
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     /**
