@@ -3,6 +3,8 @@ package com.jelmerpijnappel.jelmerqa;
 import com.jelmerpijnappel.jelmerqa.database.DatabaseDelegate;
 import com.jelmerpijnappel.jelmerqa.database.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,11 +44,36 @@ public class QuestionController {
      * Answer an existing question
      */
     @PutMapping("/answer-question")
-    public void answerQuestion(@RequestParam Long questionId, @RequestParam String answer) {
-        databaseDelegate.persistAnswerToQuestion(questionId, answer);
+    public ResponseEntity<String> answerQuestion(@RequestBody Question questionWithAnswer) {
+        // Temporarily disabled
+        if(false) {
+            Long id = questionWithAnswer.getId();
+            String answer = questionWithAnswer.getAnswer();
 
-        // TODO: Send answer update email
+            databaseDelegate.persistAnswerToQuestion(id, answer);
 
-        databaseDelegate.deleteEmailFromQuestion(questionId);
+            // TODO: Send answer update email
+
+            databaseDelegate.deleteEmailFromQuestion(id);
+        }
+        else {
+            return new ResponseEntity<>("Not available until authorization is built", HttpStatus.OK);
+        }
+        return null;
+    }
+
+    /**
+     * Delete an existing question
+     */
+    @PutMapping("/delete-question")
+    public ResponseEntity<String> deleteQuestion(@RequestBody Question questionWithId) {
+        // Temporarily disabled
+        if(false) {
+            databaseDelegate.deleteQuestion(questionWithId.getId());
+        }
+        else {
+            return new ResponseEntity<>("Not available until authorization is built", HttpStatus.OK);
+        }
+        return null;
     }
 }

@@ -36,10 +36,11 @@ public class XSSFilter implements Filter {
             body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         }
         if (!body.equals("")) {
-            log.debug("Unstripped body: " + body);
-            body = XSSUtils.stripXSS(body);
-            log.debug("Stripped body to: " + body);
-            wrappedRequest.setRequestBody(body.getBytes());
+            String unstrippedBody = body.replace("\n", "");
+            log.debug("Unstripped body: " + unstrippedBody);
+            String strippedBody = XSSUtils.stripXSS(body);
+            log.debug("Stripped body to: " + strippedBody);
+            wrappedRequest.setRequestBody(strippedBody.getBytes());
         }
         chain.doFilter(wrappedRequest, response);
     }

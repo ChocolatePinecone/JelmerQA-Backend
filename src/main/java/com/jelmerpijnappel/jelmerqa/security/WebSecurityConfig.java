@@ -19,6 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/register-question").permitAll()
                     .antMatchers("/get-questions").permitAll()
                     .antMatchers("/answer-question").permitAll()
+                    .antMatchers("/delete-question").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .csrf().disable()

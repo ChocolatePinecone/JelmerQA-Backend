@@ -60,6 +60,17 @@ public class DatabaseDelegate {
         question.setEmail("");
         questionDAO.save(question);
     }
+
+    /**
+     * Delete a question in the database by id
+     * @param questionId the ID of the question to remove
+     */
+    public void deleteQuestion(Long questionId) {
+        Question question = questionDAO.getById(questionId);
+        log.debug(String.format("Removing stored question: '%s' from the database", question.getText()));
+
+        questionDAO.delete(question);
+    }
 }
 
 interface QuestionDAO extends JpaRepository<Question, Long> {
